@@ -22,7 +22,6 @@ public class DeleteMediumDialog extends AbstractVerleihvorgangFrame {
 
     public DeleteMediumDialog(Frame owner) {
         super(owner, "Medium entfernen", true, "Zu Entfernende Medien", "Entfernen");
-//        setup();
     }
     
     @Override
