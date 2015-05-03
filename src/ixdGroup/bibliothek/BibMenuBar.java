@@ -74,14 +74,17 @@ public class BibMenuBar extends JMenuBar {
         // - DatabaseMenu
         JMenuItem newUserMenuItem = new JMenuItem("Neuer Benutzer");
         newUserMenuItem.addActionListener(ae -> new AddUserDialog(_owner).setVisible(true));
+        newUserMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         _databaseMenu.add(newUserMenuItem);
 
         JMenuItem newMediumMenuItem = new JMenuItem("Neues Medium aufnehmen");
         newMediumMenuItem.addActionListener(ae -> new AddMediumDialog(_owner).setVisible(true));
+        newMediumMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         _databaseMenu.add(newMediumMenuItem);
         
         JMenuItem removeMediumMenuItem = new JMenuItem("Medium entfernen");
         removeMediumMenuItem.addActionListener(ae -> new DeleteMediumDialog(_owner).setVisible(true));
+        removeMediumMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         _databaseMenu.add(removeMediumMenuItem);
     }
 
