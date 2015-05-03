@@ -86,6 +86,16 @@ public class BibMenuBar extends JMenuBar {
         removeMediumMenuItem.addActionListener(ae -> new DeleteMediumDialog(_owner).setVisible(true));
         removeMediumMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         _databaseMenu.add(removeMediumMenuItem);
+        
+        // - HelpMenu
+        JMenuItem docMenuItem = new JMenuItem("Dokumentation");
+        _helpMenu.add(docMenuItem);
+        
+        JMenuItem keyMenuItem = new JMenuItem("Tastenkürzel");
+        _helpMenu.add(keyMenuItem);
+        
+        JMenuItem supportMenuItem = new JMenuItem("Support kontaktieren");
+        _helpMenu.add(supportMenuItem);
     }
 
     /**
