@@ -63,10 +63,14 @@ public class WindowManager {
         
         // ----- Setup Toolbar --------
         _toolBar = new JToolBar();
-        JPanel leftToolBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JPanel rightToolBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+//        JPanel leftToolBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+//        JPanel rightToolBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         
-        JTextField search = new JTextField("Suche");
+        JTextField search = new JTextField(10);
+        TextPrompt searchPrompt = new TextPrompt("Suche", search);
+        searchPrompt.changeAlpha(0.5f);
+        search.add(searchPrompt);
+        searchPrompt.setVisible(true);
         JButton testButton = new JButton("Test");
         testButton.setFont(new Font(testButton.getFont().getFontName(), testButton.getFont().getStyle(), 20));
         int btnWidth = testButton.getPreferredSize().width;
@@ -81,11 +85,12 @@ public class WindowManager {
             }
         });
  
-        leftToolBar.add(testButton);
-        rightToolBar.add(search);
+//        leftToolBar.add(testButton);
+//        
+//        rightToolBar.add(search);
         
-        leftToolBar.setVisible(true);
-        rightToolBar.setVisible(true);
+//        leftToolBar.setVisible(true);
+//        rightToolBar.setVisible(true);
         _toolBar.setFloatable(true);
         _toolBar.setPreferredSize(new Dimension(500, 40));
         _toolBar.add(testButton);
