@@ -5,6 +5,7 @@
  */
 package ixdGroup.bibliothek;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -62,10 +63,15 @@ public class AddMediumDialog extends AbstractDialog {
         panel.add(createFlowPanelWithComponents(row3), gbc);
         
         gbc.gridy = 3;
+        gbc.gridheight = 1;
+        panel.add(createFlowPanelWithComponents(
+                new JComponent[] {new JLabel("Stichworte: ")}), gbc);
+        
+        gbc.gridy = 4;
         gbc.gridheight = 2;
-        _stichwortePanel = new JPanel();
-        _stichwortePanel.add(new JLabel("Stichworte: "));
-        addNewStichwortBox();
+        gbc.fill = GridBagConstraints.BOTH;
+        _stichwortePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        _stichwortePanel.setBackground(Color.white);
         addNewStichwortBox();
         panel.add(_stichwortePanel, gbc);
         
