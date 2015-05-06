@@ -12,8 +12,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -33,7 +35,7 @@ public class WindowManager {
     private JToolBar _toolBar;
     public JTabbedPane _viewSelector;
 
-    private Dimension _defaultDimensions = new Dimension(500, 500);
+    private Dimension _defaultDimensions = new Dimension(1000, 700);
 
     /**
      * 
@@ -106,22 +108,32 @@ public class WindowManager {
         
         // ----- Setup TabbedPane ------
         _viewSelector = new JTabbedPane();
-        addTabToViewSelector("Bestand", new String[] {"Titel", "Autor", "ISBN"});
-        addTabToViewSelector("Verliehen", new String[] {"Titel", "Entleiher", "Entliehen bis"});
-        addTabToViewSelector("Zurückgegeben", new String[] {"Standort zum Einsortieren", "Titel", "ISBN"});
-        addTabToViewSelector("Benutzer", new String[] {"Name", "Vorname", "Beitritt"});
+        addTabToViewSelector("Bestand", new String[] {"Titel", "Autor", "ISBN"},
+                new JComponent[] {new JLabel("<html>Exemplare: 10<br>Verfügbar: 2<br>"
+                        + "Standorte: AF453, AF454</html>"), new JButton("Exemplar entfernen")});
+        addTabToViewSelector("Verliehen", new String[] {"Titel", "Entleiher", "Entliehen bis"},
+                new JComponent[] {new JLabel("<html>Verfügbare Exemplare: 0<br>Vorbestellungen: 2<br>"
+                        + "Etc.</html>"), new JButton("Exemplar entfernen")});
+        addTabToViewSelector("Zurückgegeben", new String[] {"Standort zum Einsortieren", "Titel", "ISBN"},
+                new JComponent[] {new JLabel("<html>Standort zum Einsortieren: BG635<br>"
+                        + "Vorbestellungen für dieses Medium: 2<br>"
+                        + "Letzter Entleiher: Achmann, Achmed</html>"), new JButton("Als einsortiert markieren")});
+        addTabToViewSelector("Benutzer", new String[] {"Name", "Vorname", "Beitritt"},
+                new JComponent[] {new JLabel("<html>Name: 10<br>Vorname: 2<br>"
+                        + "Beitritt: AF453, AF454<br>ID: 1249234937<br>"
+                        + "Mitgliedschaftsende: 12.05.2442</html>"), new JButton("Mitgliedschaft ändern")});
         _viewSelector.setVisible(true);
         
         _mainPanel.add(_viewSelector, BorderLayout.CENTER);
                 
     }
     
-    private void addTabToViewSelector(String tabName, String[] colNames) {
-        _viewSelector.add(createMainView(tabName, colNames), tabName);
+    private void addTabToViewSelector(String tabName, String[] colNames, JComponent[] details) {
+        _viewSelector.add(createMainView(tabName, colNames, details), tabName);
     }
     
-    private MainView createMainView(String name, String[] colNames) {
-        MainView view = new MainView(colNames);
+    private MainView createMainView(String name, String[] colNames, JComponent[] details) {
+        MainView view = new MainView(colNames, details);
         view.setName(name);
         return view;
     }

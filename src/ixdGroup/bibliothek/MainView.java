@@ -5,9 +5,12 @@
  */
 package ixdGroup.bibliothek;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -21,12 +24,24 @@ public class MainView extends JSplitPane {
     JTable _overviewTable;
     JComponent _detailView;
     
-    public MainView(String[] colNames) {
+    public MainView(String[] colNames, JComponent[] comps) {
         super(JSplitPane.HORIZONTAL_SPLIT);
         fillJTable(colNames);
-        add(new JLabel("Detail View"));
+        setupDetailView(comps);
         setResizeWeight(1.0);
         setBorder(null);
+    }
+    
+    private void setupDetailView(JComponent[] comps) {
+        JPanel detailView = new JPanel(new BorderLayout());
+        for (JComponent comp: comps) {
+            if (comp instanceof JButton) {
+                detailView.add(comp, BorderLayout.SOUTH);
+            } else {
+                detailView.add(comp, BorderLayout.CENTER);
+            }
+        }
+        add(detailView);
     }
     
     private void setupOverview() {
