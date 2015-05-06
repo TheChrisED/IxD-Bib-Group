@@ -5,6 +5,7 @@
  */
 package ixdGroup.bibliothek;
 
+import com.bulenkov.iconloader.IconLoader;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -73,20 +74,22 @@ public class WindowManager {
         searchPrompt.changeAlpha(0.5f);
         search.add(searchPrompt);
         searchPrompt.setVisible(true);
-        JButton addUserButton = createJButton("Neuer Nutzer", 20);
-        addUserButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUserDialog(_mainFrame).setVisible(true);
-            }
-        });
-        JButton addMediumButton = createJButton("Neues Medium", 20);
+        JButton addMediumButton = new JButton(IconLoader.findIcon("/ixdGroup/images/add-medium.png"));
+        addMediumButton.setMinimumSize(new Dimension(40, 40));
         addMediumButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddMediumDialog(_mainFrame).setVisible(true);
+            }
+        });
+        JButton addUserButton = new JButton(IconLoader.findIcon("/ixdGroup/images/add-user.png"));
+        addUserButton.setMinimumSize(new Dimension(40, 40));
+        addUserButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddUserDialog(_mainFrame).setVisible(true);
             }
         });
  
@@ -97,7 +100,7 @@ public class WindowManager {
 //        leftToolBar.setVisible(true);
 //        rightToolBar.setVisible(true);
         _toolBar.setFloatable(true);
-        _toolBar.setPreferredSize(new Dimension(500, 40));
+        _toolBar.setPreferredSize(new Dimension(500, 50));
         _toolBar.add(addUserButton);
         _toolBar.addSeparator();
         _toolBar.add(search);
