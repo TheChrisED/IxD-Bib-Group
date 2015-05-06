@@ -106,22 +106,22 @@ public class WindowManager {
         
         // ----- Setup TabbedPane ------
         _viewSelector = new JTabbedPane();
-        addTabToViewSelector("Bestand");
-        addTabToViewSelector("Verliehen");
-        addTabToViewSelector("Zurückgegeben");
-        addTabToViewSelector("Benutzer");
+        addTabToViewSelector("Bestand", new String[] {"Titel", "Autor", "ISBN"});
+        addTabToViewSelector("Verliehen", new String[] {"Titel", "Entleiher", "Entliehen bis"});
+        addTabToViewSelector("Zurückgegeben", new String[] {"Standort zum Einsortieren", "Titel", "ISBN"});
+        addTabToViewSelector("Benutzer", new String[] {"Name", "Vorname", "Beitritt"});
         _viewSelector.setVisible(true);
         
         _mainPanel.add(_viewSelector, BorderLayout.CENTER);
                 
     }
     
-    private void addTabToViewSelector(String tabName) {
-        _viewSelector.add(createMainView(tabName), tabName);
+    private void addTabToViewSelector(String tabName, String[] colNames) {
+        _viewSelector.add(createMainView(tabName, colNames), tabName);
     }
     
-    private MainView createMainView(String name) {
-        MainView view = new MainView();
+    private MainView createMainView(String name, String[] colNames) {
+        MainView view = new MainView(colNames);
         view.setName(name);
         return view;
     }

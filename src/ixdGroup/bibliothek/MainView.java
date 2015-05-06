@@ -6,6 +6,7 @@
 package ixdGroup.bibliothek;
 
 import java.awt.Dimension;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -17,9 +18,12 @@ import javax.swing.JTable;
  */
 public class MainView extends JSplitPane {
     
-    public MainView() {
+    JTable _overviewTable;
+    JComponent _detailView;
+    
+    public MainView(String[] colNames) {
         super(JSplitPane.HORIZONTAL_SPLIT);
-        setupOverview();
+        fillJTable(colNames);
         add(new JLabel("Detail View"));
         setResizeWeight(1.0);
         setBorder(null);
@@ -34,6 +38,17 @@ public class MainView extends JSplitPane {
         overview.setPreferredSize(new Dimension(
                 (int) (this.getPreferredSize().width * 0.8), this.getPreferredSize().height));
         System.out.println(this.getPreferredSize());
+        overview.setVisible(true);
+        add(overview);
+    }
+    
+    public void fillJTable(String[] colNames) {
+        _overviewTable = new JTable(new String[0][0], colNames);
+        JScrollPane overview = new JScrollPane(_overviewTable);
+        _overviewTable.setFillsViewportHeight(true);
+        _overviewTable.setVisible(true);
+        overview.setPreferredSize(new Dimension(
+                (int) (this.getPreferredSize().width * 0.8), this.getPreferredSize().height));
         overview.setVisible(true);
         add(overview);
     }
