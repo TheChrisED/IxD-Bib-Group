@@ -66,8 +66,6 @@ public class WindowManager {
         
         // ----- Setup Toolbar --------
         _toolBar = new JToolBar();
-//        JPanel leftToolBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
-//        JPanel rightToolBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         
         JTextField search = new JTextField(10);
         TextPrompt searchPrompt = new TextPrompt("Suche", search);
@@ -93,12 +91,6 @@ public class WindowManager {
             }
         });
  
-//        leftToolBar.add(testButton);
-//        
-//        rightToolBar.add(search);
-        
-//        leftToolBar.setVisible(true);
-//        rightToolBar.setVisible(true);
         _toolBar.setFloatable(true);
         _toolBar.setPreferredSize(new Dimension(500, 50));
         _toolBar.add(addUserButton);
