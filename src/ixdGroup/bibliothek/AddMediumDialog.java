@@ -10,6 +10,8 @@ import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -27,6 +29,8 @@ import javax.swing.JTextField;
  */
 public class AddMediumDialog extends AbstractDialog {
 
+    JPanel _stichwortePanel;
+    
     public AddMediumDialog(Frame owner) {
         super(owner, "Neues Medium", true, "Aufnehmen");
         setup();
@@ -59,10 +63,28 @@ public class AddMediumDialog extends AbstractDialog {
         
         gbc.gridy = 3;
         gbc.gridheight = 2;
-        JComponent[] row4 = {new JTextArea("Stichworte", 3, 35)};
-        panel.add(createFlowPanelWithComponents(row4), gbc);
+        _stichwortePanel = new JPanel();
+        _stichwortePanel.add(new JLabel("Stichworte: "));
+        addNewStichwortBox();
+        addNewStichwortBox();
+        panel.add(_stichwortePanel, gbc);
         
         return panel;
+    }
+    
+    private void addNewStichwortBox() {
+        String[] stichworte = {"Thriller", "cool", "Liebe", "Action", "Whatever", "Langweilig"};
+        JComboBox stichwortBox = new JComboBox(stichworte);
+        stichwortBox.setEditable(true);
+        stichwortBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addNewStichwortBox();
+                setVisible(true);
+            }
+        });
+        _stichwortePanel.add(stichwortBox);
     }
     
 }
