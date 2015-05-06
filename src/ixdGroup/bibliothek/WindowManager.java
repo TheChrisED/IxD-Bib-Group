@@ -71,17 +71,20 @@ public class WindowManager {
         searchPrompt.changeAlpha(0.5f);
         search.add(searchPrompt);
         searchPrompt.setVisible(true);
-        JButton testButton = new JButton("Test");
-        testButton.setFont(new Font(testButton.getFont().getFontName(), testButton.getFont().getStyle(), 20));
-        int btnWidth = testButton.getPreferredSize().width;
-        System.out.println(btnWidth);
-        testButton.setMinimumSize(new Dimension(85, 150));
-        testButton.setPreferredSize(new Dimension(100, 150));
-        testButton.addActionListener(new ActionListener() {
+        JButton addUserButton = createJButton("Neuer Nutzer", 20);
+        addUserButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VerleihFrame(_mainFrame).setVisible(true);
+                new AddUserDialog(_mainFrame).setVisible(true);
+            }
+        });
+        JButton addMediumButton = createJButton("Neues Medium", 20);
+        addMediumButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddMediumDialog(_mainFrame).setVisible(true);
             }
         });
  
@@ -93,9 +96,10 @@ public class WindowManager {
 //        rightToolBar.setVisible(true);
         _toolBar.setFloatable(true);
         _toolBar.setPreferredSize(new Dimension(500, 40));
-        _toolBar.add(testButton);
+        _toolBar.add(addUserButton);
         _toolBar.addSeparator();
         _toolBar.add(search);
+        _toolBar.add(addMediumButton);
         _toolBar.setVisible(true);
         System.out.println(_toolBar.getLayout());
         _mainPanel.add(_toolBar, BorderLayout.NORTH);
@@ -122,10 +126,11 @@ public class WindowManager {
         return view;
     }
     
-    public static JButton createJButton(String title, Dimension size, int fontSize) {
+    public static JButton createJButton(String title, int fontSize) {
         JButton testButton = new JButton(title);
         testButton.setFont(new Font(testButton.getFont().getFontName(), testButton.getFont().getStyle(), fontSize));
-        testButton.setPreferredSize(size);
+//        testButton.setMinimumSize(new Dimension(85, 150));
+//        testButton.setPreferredSize(new Dimension(100, 150));
         return testButton;
     }
 }
