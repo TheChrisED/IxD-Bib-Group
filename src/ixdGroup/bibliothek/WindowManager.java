@@ -116,7 +116,9 @@ public class WindowManager {
         addTabToViewSelector("Benutzer", new String[] {"Name", "Vorname", "Beitritt"},
                 new JComponent[] {new JLabel("<html>Name: 10<br>Vorname: 2<br>"
                         + "Beitritt: AF453, AF454<br>ID: 1249234937<br>"
-                        + "Mitgliedschaftsende: 12.05.2442</html>"), new JButton("Mitgliedschaft ändern")});
+                        + "Adresse: Ulfmann Platz 42<br>"
+                        + "Mitgliedschaftsende: 12.05.2442</html>"), new JButton("Mitgliedschaft ändern"),
+                new JButton("Benutzerinforationen bearbeiten")});
         _viewSelector.setVisible(true);
         
         _mainPanel.add(_viewSelector, BorderLayout.CENTER);

@@ -7,6 +7,7 @@ package ixdGroup.bibliothek;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -34,13 +35,22 @@ public class MainView extends JSplitPane {
     
     private void setupDetailView(JComponent[] comps) {
         JPanel detailView = new JPanel(new BorderLayout());
+        int anzahlButtons = 0;
         for (JComponent comp: comps) {
             if (comp instanceof JButton) {
-                detailView.add(comp, BorderLayout.SOUTH);
+                ++anzahlButtons;
+            }
+        }
+        JPanel btnPanel = new JPanel(new GridLayout(anzahlButtons, 1));
+        int btnIndex = 0;
+        for (JComponent comp: comps) {
+            if (comp instanceof JButton) {
+                btnPanel.add(comp);
             } else {
                 detailView.add(comp, BorderLayout.CENTER);
             }
         }
+        detailView.add(btnPanel, BorderLayout.SOUTH);
         add(detailView);
     }
     
